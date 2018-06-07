@@ -1,0 +1,100 @@
+/*
+Web Site main SASS
+Author: Gustavo Guimaraes;
+*/
+/* ----- VARIABLES - BEGINING ----- */
+/* ----- VARIABLES - ENDING ----- */
+/* ----- MIXINS - BEGINING ----- */
+/* ----- MIXINS - ENDING ----- */
+/* ----- Element Selectors - BEGINING ----- */
+body {
+  background-color: #444444;
+  color: #CCCCCC; }
+
+h1 {
+  font-size: 3.5em; }
+
+h2 {
+  font-size: 2.5em; }
+
+h3 {
+  font-size: 2em; }
+
+h4 {
+  font-size: 1em; }
+
+h5 {
+  font-size: 0.8em; }
+
+h6 {
+  font-size: 0.6em; }
+
+/* ----- Element Selectors - ENDING ----- */
+/* ----- Id Selectors - BEGINING ----- */
+#wrapper {
+  position: relative; }
+
+#main-header {
+  position: fixed;
+  top: 0px;
+  z-index: 9999;
+  background-color: #444444;
+  width: 100%;
+  height: 250px;
+  padding-bottom: 40px;
+  box-sizing: border-box; }
+  #main-header h1 {
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    height: 175px; }
+  #main-header #main-nav {
+    box-sizing: border-box;
+    height: 55px;
+    width: 90%;
+    padding: 10px;
+    margin: 0px auto;
+    border-top: 3px solid #CCCCCC;
+    border-bottom: 3px solid #CCCCCC; }
+
+#main-content {
+  background-color: #DDDDDD;
+  min-height: 400px;
+  margin-top: 250px; }
+
+/* ----- Id Selectors - ENDING ----- */
+/* ----- Class Selectors - BEGINING ----- */
+/* ----- Class Selectors - ENDING ----- */
+@media only print {
+  /* ----- Element Selectors - BEGINING ----- */
+  /* ----- Element Selectors - ENDING ----- */
+  /* ----- Id Selectors - BEGINING ----- */
+  /* ----- Id Selectors - ENDING ----- */
+  /* ----- Class Selectors - BEGINING ----- */
+  /* ----- Class Selectors - ENDING ----- */ }
+/*Querie and CSS for Smart Phones - Using limit of 480px width*/
+@media only screen and (max-width: 480px) {
+  /* ----- Element Selectors - BEGINING ----- */
+  /* ----- Element Selectors - ENDING ----- */
+  /* ----- Id Selectors - BEGINING ----- */
+  /* ----- Id Selectors - ENDING ----- */
+  /* ----- Class Selectors - BEGINING ----- */
+  /* ----- Class Selectors - ENDING ----- */ }
+/*Querie and CSS for Medium Devices - Using limit of 768px width (HD resolution)*/
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  /* ----- Element Selectors - BEGINING ----- */
+  /* ----- Element Selectors - ENDING ----- */
+  /* ----- Id Selectors - BEGINING ----- */
+  /* ----- Id Selectors - ENDING ----- */
+  /* ----- Class Selectors - BEGINING ----- */
+  /* ----- Class Selectors - ENDING ----- */ }
+/*Querie and CSS for Medium Devices - Above 768px width (HD resolution)*/
+@media only screen and (min-width: 769px) {
+  /* ----- Element Selectors - BEGINING ----- */
+  /* ----- Element Selectors - ENDING ----- */
+  /* ----- Id Selectors - BEGINING ----- */
+  /* ----- Id Selectors - ENDING ----- */
+  /* ----- Class Selectors - BEGINING ----- */
+  /* ----- Class Selectors - ENDING ----- */ }
+
+/*# sourceMappingURL=style.css.map */

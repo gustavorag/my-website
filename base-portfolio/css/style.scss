@@ -1,0 +1,145 @@
+/*
+Web Site main SASS
+Author: Gustavo Guimaraes;
+*/
+
+/* ----- VARIABLES - BEGINING ----- */
+$primaryColor: #444444;
+$primaryColorDarker: #232323;
+$primaryFontColor: #CCCCCC;
+$contentBgColor: #DDDDDD;
+
+$mainHeaderHeight: 250;
+$mainHeaderBottomPadding: 40;
+
+$mainHeaderWeight: 10;
+
+$logoAreaHeight: 200;
+$logoAreaPadding:10;
+$navAreaHeight: 60;
+$navAreaPadding:10;
+
+
+$navBorderValues: 3px solid #CCCCCC;
+/* ----- VARIABLES - ENDING ----- */
+
+/* ----- MIXINS - BEGINING ----- */
+@mixin heightByWeight($_parentHeight, $_parentWeight, $_weight, $_adjust){
+	height: ((($_parentHeight / $_parentWeight) * $_weight)+$_adjust)+px;
+}
+/* ----- MIXINS - ENDING ----- */
+
+/* ----- Element Selectors - BEGINING ----- */
+body{
+	background-color: $primaryColor;
+	color: $primaryFontColor;
+}
+h1{
+	font-size:3.5em;
+}
+h2{
+	font-size:2.5em;
+}
+h3{
+	font-size:2em;
+}
+h4{
+	font-size:1em;
+}
+h5{
+	font-size:0.8em;
+}
+h6{
+	font-size:0.6em;
+}
+/* ----- Element Selectors - ENDING ----- */
+
+/* ----- Id Selectors - BEGINING ----- */
+#wrapper{
+	position: relative;
+}
+#main-header{
+	position: fixed;
+	top:0px;
+	z-index: 9999;
+	background-color: $primaryColor;
+	width: 100%;
+	height: $mainHeaderHeight+px;
+	padding-bottom: $mainHeaderBottomPadding+px;
+	box-sizing: border-box;
+	h1{
+		box-sizing: border-box;
+		text-align: center;
+		padding:$logoAreaPadding+px;
+		@include heightByWeight($mainHeaderHeight, $mainHeaderWeight, 7, 0);
+	}
+	#main-nav{
+		box-sizing: border-box;
+		@include heightByWeight($mainHeaderHeight, $mainHeaderWeight, 3, -20);
+		width: 90%;
+		padding: $navAreaPadding+px;
+		margin: 0px auto;
+		border-top: $navBorderValues;
+		border-bottom: $navBorderValues;
+	}
+}
+#main-content{
+	background-color: $contentBgColor;
+	min-height: 400px;
+	margin-top: $mainHeaderHeight+px;
+}
+/* ----- Id Selectors - ENDING ----- */
+
+/* ----- Class Selectors - BEGINING ----- */
+/* ----- Class Selectors - ENDING ----- */
+
+@media only print{
+	/* ----- Element Selectors - BEGINING ----- */
+	/* ----- Element Selectors - ENDING ----- */
+
+	/* ----- Id Selectors - BEGINING ----- */
+	/* ----- Id Selectors - ENDING ----- */
+
+	/* ----- Class Selectors - BEGINING ----- */
+	/* ----- Class Selectors - ENDING ----- */
+}
+
+/*Querie and CSS for Smart Phones - Using limit of 480px width*/
+@media only screen and (max-width: 480px) {
+
+	/* ----- Element Selectors - BEGINING ----- */
+	/* ----- Element Selectors - ENDING ----- */
+
+	/* ----- Id Selectors - BEGINING ----- */
+	/* ----- Id Selectors - ENDING ----- */
+
+	/* ----- Class Selectors - BEGINING ----- */
+	/* ----- Class Selectors - ENDING ----- */
+	
+}
+/*Querie and CSS for Medium Devices - Using limit of 768px width (HD resolution)*/
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+	/* ----- Element Selectors - BEGINING ----- */
+	/* ----- Element Selectors - ENDING ----- */
+
+	/* ----- Id Selectors - BEGINING ----- */
+	/* ----- Id Selectors - ENDING ----- */
+
+	/* ----- Class Selectors - BEGINING ----- */
+	/* ----- Class Selectors - ENDING ----- */	
+
+}
+/*Querie and CSS for Medium Devices - Above 768px width (HD resolution)*/
+@media only screen and (min-width: 769px) {
+
+	/* ----- Element Selectors - BEGINING ----- */
+	/* ----- Element Selectors - ENDING ----- */
+
+	/* ----- Id Selectors - BEGINING ----- */
+	/* ----- Id Selectors - ENDING ----- */
+
+	/* ----- Class Selectors - BEGINING ----- */
+	/* ----- Class Selectors - ENDING ----- */
+	
+}

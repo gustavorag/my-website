@@ -41,17 +41,18 @@ class Draggable extends Component {
     }
   }
 
-  handleMouseDown(mouseTrackEvent, e) {
-
-    // //console.log(`offsetHeight [${e.target.offsetHeight}] offsetLeft [${e.target.offsetLeft}]`)
-    // //console.log(`offsetTop [${e.target.offsetTop}] offsetWidth [${e.target.offsetWidth}]`)
+  handleMouseDown(mouseTrackEvent, localEvent) {
 
     var proceed = true;
+
+    var mouseX = localEvent ? localEvent.x : mouseTrackEvent.x;
+    var mouseY = localEvent ? localEvent.y : mouseTrackEvent.y;
+
     if(this.props.beforeDragBegins){
-      //Get actual mouse position to pass as param to beforeDragBegins function
+      // //Get actual mouse position to pass as param to beforeDragBegins function
       let mousePosition = {
-        mouseX: e ? e.clientX : mouseTrackEvent.x,
-        mouxeY: e? e.clientY : mouseTrackEvent.y
+        x: mouseX,
+        y: mouseY
       }
       proceed = this.props.beforeDragBegins(this.props.mouseTrackerId, mousePosition);
     }
@@ -65,17 +66,17 @@ class Draggable extends Component {
       if(successfulDragging){
         this.setState({
           isMoving: true,
-          mouseInitialX: e.clientX,
-          mouseInitialY: e.clientY,
-          mouseActualX: e.clientX,
-          mouseActualY: e.clientY,
+          mouseInitialX: mouseX,
+          mouseInitialY: mouseY,
+          mouseActualX: mouseX,
+          mouseActualY: mouseY,
         });
       }
       if(this.props.afterDragBegins){
         //Get actual mouse position to pass as param to afterDragBegins function
         let mousePosition = {
-          mouseX: this.state.mouseActualX,
-          mouxeY: this.state.mouseActualX
+          x: this.state.mouseActualX,
+          y: this.state.mouseActualX
         }
         this.props.afterDragBegins(this.props.mouseTrackerId, mousePosition);
       }
@@ -83,53 +84,59 @@ class Draggable extends Component {
 
   }
 
-  handlerMouseMove(mouseTrackEvent, e){
+  handlerMouseMove(mouseTrackEvent, localEvent){
     if(this.state.isMoving){
 
       var proceed = true;
+
+      var mouseX = localEvent ? localEvent.x : mouseTrackEvent.x;
+      var mouseY = localEvent ? localEvent.y : mouseTrackEvent.y;
+
       if(this.props.beforeDragMovement){
         //Get actual mouse position to pass as param to beforeDragMovement function
         let mousePosition = {
-          mouseX: e ? e.clientX : mouseTrackEvent.x,
-          mouxeY: e? e.clientY : mouseTrackEvent.y
+          x: mouseX,
+          y: mouseY
         }
         proceed = this.props.beforeDragMovement(this.props.mouseTrackerId, mousePosition);
       }
       if(proceed){
-        //console.log("Proceed",proceed)
+
         this.setState({
-          mouseActualX: mouseTrackEvent.x,
-          mouseActualY: mouseTrackEvent.y,
+          mouseActualX: mouseX,
+          mouseActualY: mouseY,
         });
 
         if(this.props.afterDragMovement){
           //Get actual mouse position to pass as param to afterDragMovement function
           let mousePosition = {
-            mouseX: this.state.mouseActualX,
-            mouxeY: this.state.mouseActualX
+            x: this.state.mouseActualX,
+            y: this.state.mouseActualX
           }
           this.props.afterDragMovement(this.props.mouseTrackerId, mousePosition);
         }
       }
-
     }
   }
 
-  handleMouseUp(mouseTrackEvent, e) {
+  handleMouseUp(mouseTrackEvent, localEvent) {
 
     var proceed = true;
+
+    var mouseX = localEvent ? localEvent.x : mouseTrackEvent.x;
+    var mouseY = localEvent ? localEvent.y : mouseTrackEvent.y;
+
     //console.log("Draggable handleMouseUp")
     if(this.props.beforeDragEnds){
       //Get actual mouse position to pass as param to beforeDragEnds function
       let mousePosition = {
-        mouseX: e ? e.clientX : mouseTrackEvent.x,
-        mouxeY: e? e.clientY : mouseTrackEvent.y
+        x: mouseX,
+        y: mouseY
       }
       proceed = this.props.beforeDragEnds(this.props.mouseTrackerId, mousePosition);
     }
     if(proceed){
-      //console.log("Draggable Proceed",proceed)
-      //console.log("Draggable deregisterMouseTraker")
+
       this.props.mouseTrack.deregisterMouseTraker(this.props.mouseTrackerId);
       this.props.mouseTrack.deregisterDraggingAction(this.props.mouseTrackerId);
 
@@ -144,8 +151,8 @@ class Draggable extends Component {
       if(this.props.afterDragEnds){
         //Get actual mouse position to pass as param to afterDragEnds function
         let mousePosition = {
-          mouseX: e ? e.clientX : mouseTrackEvent.x,
-          mouxeY: e? e.clientY : mouseTrackEvent.y
+          x: this.state.mouseActualX,
+          y: this.state.mouseActualX
         }
         this.props.afterDragEnds(this.props.mouseTrackerId, mousePosition);
       }
@@ -190,7 +197,43 @@ class Draggable extends Component {
     // //console.log("Style: ",style)
 
     return(
-      <div className={cursorClass} onMouseDown={(e) => this.handleMouseDown(undefined, e)} onMouseUp={(e) => this.handleMouseUp(undefined, e)} style={style}>
+      <div className={cursorClass}  style={style}
+        onMouseDown={
+          (e) => {
+            var localEvent = {
+              x: e.clientX,
+              y: e.clientY
+            }
+            this.handleMouseDown(undefined, localEvent)
+          }
+        }
+        onMouseUp={
+          (e) => {
+            var localEvent = {
+              x: e.clientX,
+              y: e.clientY
+            }
+            this.handleMouseUp(undefined, localEvent)
+          }
+        }
+        onTouchStart={
+          (e) => {
+            var localEvent = {
+              x: e.touches[0].clientX,
+              y: e.touches[0].clientY
+            }
+            this.handleMouseDown(undefined, localEvent)
+          }
+        }
+        onTouchEnd={
+          (e) => {
+            var localEvent = {
+              x: this.state.previousX,
+              y: this.state.previousY
+            }
+            this.handleMouseUp(undefined, localEvent)
+          }
+        }>
         {this.props.children}
       </div>
     )

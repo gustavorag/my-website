@@ -1,88 +1,32 @@
 html,
 body {
-    height: 100%;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
 }
 
 /* Z INDEXS */
-#react-navbar{
+#header, .navbar-collapse.collapse.show{
   z-index: 9999;
 }
-#react-cartridge-shelf{
+#react-navbar{
   z-index: 9998;
 }
-#header{
+#react-cartridge-shelf{
   z-index: 9997;
 }
 /* ID SELECTORS */
+#App{
+  position: relative;
+  width: 100%;
+}
 #root{
   height: 100%;
 }
-#header{
-  height: 10%;
-  position: relative;
-}
-#react-navbar{
-  height: 100%;
-  background-color: #446484;
-  color: #c8d9dd;
-}
-#react-navbar a{
-  color: #c8d9dd;
-  cursor: pointer;
-}
-#react-main-logo{
-  font-size: 4em;
-  margin-right: 20px;
-  transition: all 0.5 ease;
-  cursor: pointer;
-}
-#react-main-logo:hover{
-  /* animation: App-logo-spin infinite 20s linear; */
-}
-#home-link{
-  color: #c8d9dd;
-  font-size: 3em;
-  cursor: pointer;
-}
-#home-link:hover{
-  color: #9e9e9e;
-  font-size: 3em;
-  text-decoration: none;
-}
-#react-main-info{
 
-}
 #content{
   height: 90%;
   background-color: #233d54;
-}
-#react-cartridge-shelf{
-  position:relative;
-  top: 0px;
-  height: 100px;
-  padding: 5px;
-  padding-left: 50px;
-  background-color: #2a4f75;
-  color: rgba(255,255,255,1);
-  transition: all 0.5s ease;
-}
-#react-cartridge-shelf ul{
-  display: flex;
-  justify-content:flex-start;
-  height: 90px;
-}
-#react-cartridge-shelf li{
-  margin-right: 20px;
-}
-#react-cartridge-shelf li a{
-  font-size: 1.5em;
-  color: rgba(255,255,255,1);
-}
-#react-cartridge-shelf.collapsed{
-  height: 0px;
-  margin: 0px;
-  padding: 0px;
-  color: rgba(255,255,255,0.0);
 }
 #virtual-console{
   display: flex;
@@ -93,9 +37,14 @@ body {
   width: 15%;
   height: 350px;
   margin: 20px 0px;
-  background-image: url('./images/virtual-console/console.png');
+  /* background-image: url('./images/virtual-console/console.png');
   background-repeat: no-repeat;
-  background-size: 90% 100%;
+  background-size: 90% 100%; */
+}
+#console-img{
+  position:absolute;
+  width: 100%;
+  height: auto;
 }
 #virtual-console-screen{
   display: inline-block;
@@ -105,6 +54,10 @@ body {
   border: 10px solid #444444;
   background-color: #FFFFFF;
 }
+/* CLASS SELECTORS */
+.mobile-only{
+  display: none;
+}
 .navbar-nav a{
   font-size: 1.2em;
   margin: 2px 20px;
@@ -113,37 +66,34 @@ body {
   height: 100%;
 }
 .app-cartridge{
-  margin: 0px 30px;
   padding: 5px 0px;
   height: 90px;
-  width: 150px;
-  color: #444444;
-
-}
-/* .app-cartridge:hover img{
-  position: relative;
-  top: -65px;
-  left: -20px;
-  width: 150px;
-  height: auto;
-} */
-.app-cartridge img{
-  width: auto;
-  height: 80px;
   color: #444444;
 }
 .app-cartridge.loaded{
   position: relative;
-  bottom:0px;
-  left:10px;
+  margin: auto;
+  margin-top: 12%;
+  width: 60%;
 }
-.app-cartridge.loaded img{
-  width: 150px;
-  height: auto;
+.app-cartridge.loaded .cartridge-bottom{
+  display: none;
+}
+.cartridge-top{
+  position: relative;
+  width: 100%;
+}
+.cartridge-art{
   position: absolute;
-  clip: rect(0px,500px,100px,0px);
+  left: 0px;
+  top: 5px;
+  width: 100%;
 }
-
+.cartridge-bottom{
+  position: relative;
+  width: 100%;
+  top:-3px;
+}
 .cartridge-grab{
   cursor: -webkit-grab;
   cursor: grab;
@@ -152,21 +102,90 @@ body {
   cursor: -webkit-grabbing;
   cursor: grabbing;
   z-index: 9999;
+  position: absolute;
 }
 .cartridge-grabbing img{
-  width: 150px;
+  width: 200px;
   height: auto;
-  position: absolute;
-  clip: rect(0px,500px,300px,0px) !important;
+}
+.cartridge-grabbing .app-cartridge.loaded .cartridge-bottom{
+  display: initial;
 }
 .cartridge-input{
   position: relative;
   width: 90%;
-  height: 40%;
+  height: 90%;
+  margin: 0px auto;
+  text-align: center;
+}
+.show-content {
+  display: initial;
 }
 
-/* Animations */
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@media only screen and (max-width: 480px){
+  body{
+    overflow-x:hidden;
+    max-width: 100%;
+  }
+  #react-main-logo{
+    font-size: 3em;
+  }
+  #home-link{
+   font-size: 2em;
+  }
+  #navbar-toggler{
+    display: inline-block;
+  }
+  #content{
+    height: 90%;
+    background-color: #233d54;
+  }
+  #virtual-console{
+
+  }
+  #react-cartridge-shelf ul{
+    display: inline-block;
+    width: 90%;
+  }
+  #react-cartridge-shelf ul li{
+    display: inline-block;
+    float: left;
+  }
+  #virtual-console-loader{
+    position: relative;
+    width: 65%;
+    height: 400px;
+    margin: 20px auto;
+  }
+  #console-img{
+    position:absolute;
+    width: 100%;
+    height: auto;
+
+  }
+  #virtual-console-screen{
+    display: none;
+    width: 75%;
+    margin-top: 20px;
+    min-height: 500px;
+    border: 10px solid #444444;
+    background-color: #FFFFFF;
+  }
+
+  .mobile-only{
+    display: initial;
+  }
+  .navbar-collapse{
+    padding: 10px;
+    text-align: right;
+    background-color: #FFFFFF;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+}
+
+@media only screen and (min-width: 769px) {
+
 }

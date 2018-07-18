@@ -19,6 +19,9 @@ class MouseTrack extends Component {
   MOUSE_DOWN = "MOUSE_DOWN";
   MOUSE_UP = "MOUSE_UP";
   MOUSE_DRAG_OVER = "DRAG_OVER";
+  TOUCH_START = "TOUCH_START";
+  TOUCH_MOVE = "TOUCH_MOVE";
+  TOUCH_END = "TOUCH_END";
 
 
   constructor(props){
@@ -54,6 +57,16 @@ class MouseTrack extends Component {
         draggableId: undefined,
       }
     }
+    this.touchState = {
+      x:0,
+      y:0,
+      touchStarted: false,
+      dragAction: {
+        isDragging: false,
+        draggableItem: undefined,
+        draggableId: undefined,
+      }
+    }
 
     //This is the exposed API of this component.
     this.MouseTrackApi = Object.freeze({
@@ -61,6 +74,9 @@ class MouseTrack extends Component {
       MOUSE_DOWN: this.MOUSE_DOWN,
       MOUSE_UP: this.MOUSE_UP,
       MOUSE_DRAG_OVER: this.MOUSE_DRAG_OVER,
+      TOUCH_START: this.TOUCH_START,
+      TOUCH_MOVE: this.TOUCH_MOVE,
+      TOUCH_END: this.TOUCH_END,
       registerDropListener : this._registerDropListener,
       deregisterDropListener : this._deregisterDropListener,
       registerMouseTraker: this._registerMouseTraker,
@@ -216,46 +232,42 @@ class MouseTrack extends Component {
     handleMouseMove = (e) => {
       if(this.isTrackOn){
 
-        var mouseEvent = {
-          eventType: this.MOUSE_MOVE,
-          previousX: this.mouseState.x,
-          previousY: this.mouseState.y,
-          x: e.clientX,
-          y: e.clientY,
-          isMouseDown: this.mouseState.isMouseDown,
-          isDragging: this.mouseState.dragAction.isDragging,
-        }
+        var nextX = e.clientX;
+        var nextY = e.clientY;
 
-        this.mouseState.x = e.clientX;
-        this.mouseState.y = e.clientY;
+        this.createMouseEvent(nextX, nextY, this.MOUSE_MOVE);
+      }
+    }
 
-        this.MouseTrackersRegister.forEach((listener) => {
-          listener.callbackFunction(mouseEvent);
-        })
+    handleTouchMove = (e) => {
+      if(this.isTrackOn){
+
+        var nextX = e.touches[0].clientX;
+        var nextY = e.touches[0].clientY;
+
+        this.createMouseEvent(nextX, nextY, this.MOUSE_MOVE);
       }
     }
 
     handleMouseDown = (e) => {
+
       if(this.isTrackOn){
 
-        this.mouseState.isMouseDown = true;
+        var nextX = e.clientX;
+        var nextY = e.clientY;
 
-        var mouseEvent = {
-          eventType: this.MOUSE_DOWN,
-          previousX: this.mouseState.x,
-          previousY: this.mouseState.y,
-          x: e.clientX,
-          y: e.clientY,
-          isMouseDown: this.mouseState.isMouseDown,
-          isDragging: this.mouseState.dragAction.isDragging,
-        }
+        this.createMouseEvent(nextX, nextY, this.MOUSE_DOWN);
+      }
+    }
 
-        this.mouseState.x = e.clientX;
-        this.mouseState.y = e.clientY;
+    handleTouchStart = (e) => {
 
-        this.MouseTrackersRegister.forEach((listener) => {
-          listener.callbackFunction(mouseEvent);
-        })
+      if(this.isTrackOn){
+        console.log("Touch start ", e.touches[0])
+        var nextX = e.touches[0].clientX;
+        var nextY = e.touches[0].clientY;
+
+        this.createMouseEvent(nextX, nextY, this.MOUSE_DOWN);
       }
     }
 
@@ -265,30 +277,49 @@ class MouseTrack extends Component {
     handleMouseUp = (e) => {
 
       if(this.isTrackOn){
-        //console.log("handleMouseUp")
-        this.mouseState.isMouseDown = true;
+
+        var nextX = e.clientX;
+        var nextY = e.clientY;
+
+        this.createMouseEvent(nextX, nextY, this.MOUSE_UP);
+      }
+    }
+
+    handleTouchEnd = (e) => {
+
+      if(this.isTrackOn){
+        console.log("Touch end ", e, e.touches)
+        var nextX = this.mouseState.x;
+        var nextY = this.mouseState.y;
+
+        this.createMouseEvent(nextX, nextY, this.MOUSE_UP);
+      }
+    }
+
+    createMouseEvent = (newX, newY, eventType) => {
+        if(eventType === this.MOUSE_UP){
+            this.mouseState.isMouseDown = false;
+        }
+        if(eventType === this.MOUSE_DOWN){
+            this.mouseState.isMouseDown = true;
+        }
 
         var mouseEvent = {
-          eventType: this.MOUSE_UP,
+          eventType: eventType,
           previousX: this.mouseState.x,
           previousY: this.mouseState.y,
-          x: e.clientX,
-          y: e.clientY,
+          x: newX,
+          y: newY,
           isMouseDown: this.mouseState.isMouseDown,
           isDragging: this.mouseState.dragAction.isDragging,
         }
 
-        this.mouseState.x = e.clientX;
-        this.mouseState.y = e.clientY;
+        this.mouseState.x = newX;
+        this.mouseState.y = newY;
 
         this.MouseTrackersRegister.forEach((listener) => {
           listener.callbackFunction(mouseEvent);
         })
-        //TODO: Should stop any drag and drop action automatically when Mouse up?
-        //Maybe the desired behaviour is "one click" start dragging "one click" to stop dragging
-        //this._deregisterDraggingAction(this.mouseState.dragAction.draggableId)
-
-      }
     }
 
     //All eligible children of this component will receive the API. To be eligible the child must be
@@ -329,7 +360,9 @@ class MouseTrack extends Component {
 
       var renderedChildren = this.checkChildrenForTracking(this)
       return(
-        <div style={{height: "100%"}} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div style={{height: "100%"}}
+          onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}
+          onTouchMove={this.handleTouchMove} onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
           {renderedChildren}
         </div>
       )

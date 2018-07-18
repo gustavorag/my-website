@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import AppService from '../utils/AppService';
 
+import '../styles/Header.css';
+
 class Header extends Component{
 
   constructor(props){
@@ -12,8 +14,11 @@ class Header extends Component{
     this.state={
       selectedApps:undefined,
       categories: categories,
+      showCollapsedNav: false,
     }
+
     this.handleCategorySelection = this.handleCategorySelection.bind(this);
+    this.toggleNavBar = this.toggleNavBar.bind(this);
   }
 
   handleCategorySelection(categoryId){
@@ -30,44 +35,58 @@ class Header extends Component{
     this.setState({selectedApps:selectedApps});
   }
 
+  toggleNavBar(show){
+    this.setState({showCollapsedNav: show});
+  }
+
   render(){
+
+    var showNavigation = this.state.showCollapsedNav ? "show-navigation" : "";
 
     return (
       <div id="header">
-        <nav id="react-navbar" className="navbar navbar-expand-lg navbar-light">
-          <a href="/#" onClick={()=>{
-              this.props.onCategorySelection(null);
-            }}>
-            <i id="react-main-logo" className="fab fa-react"></i>
-          </a>
-          <a id="home-link" href="/#" onClick={()=>{
-              this.props.onCategorySelection(null);
-            }}>
-            React Apps
-          </a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoriesNavBar" aria-controls="categoriesNavBar" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="categoriesNavBar">
-            <div className="navbar-nav">
+        <nav id="react-navbar">
+          <div id="react-navbar-logo">
+            <a href="/#">
+              <i id="react-main-logo" className="fab fa-react"></i>
+            </a>
+            <a id="home-link" href="/#">
+              React Apps
+            </a>
+          </div>
+          <div id="react-navbar-navigation" className={showNavigation}>
+            <div id="categories">
               {
-                this.state.categories.map((category) => (
-                    <Link key={category.name} to={"/apploader/"+category.id}>
+                this.state.categories.map(
+                  (category) => (
+                    <Link key={category.name} to={"/apploader/"+category.id} onClick={
+                        ()=>{
+                          this.toggleNavBar(false)
+                        }
+                      }>
                       {category.name}
                     </Link>
                   )
                 )
               }
             </div>
+            <form className="form-inline mt-2 mt-md-0">
+              <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+              <button className="btn my-2 my-sm-0" type="submit">Search</button>
+            </form>
           </div>
-          <div id="react-main-info">
+          <div id="navbar-toggler" onClick={
+              ()=>{
+                this.toggleNavBar(!this.state.showCollapsedNav)
+              }
+            }>
+            <i className="fas fa-bars"></i>
+          </div>
 
-          </div>
-          <form className="form-inline">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn my-2 my-sm-0" type="submit">Search</button>
-          </form>
         </nav>
+        <div id="react-main-info">
+
+        </div>
       </div>
     )
   }

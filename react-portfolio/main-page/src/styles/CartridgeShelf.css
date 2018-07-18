@@ -1,0 +1,40 @@
+#react-cartridge-shelf{
+  position:relative;
+  top: 0px;
+  height: 110px;
+  padding: 5px 50px;
+  /* background-color: #2a4f75; */
+  background-color: #14579c;
+  color: rgba(255,255,255,1);
+  transition: all 0.5s ease;
+}
+#react-cartridge-shelf ul{
+  display: flex;
+  justify-content:flex-start;
+  height: 90px;
+}
+#react-cartridge-shelf li{
+  margin-right: 20px;
+}
+#react-cartridge-shelf li a{
+  font-size: 1.5em;
+  color: rgba(255,255,255,1);
+}
+#react-cartridge-shelf.collapsed{
+  height: 0px;
+  margin: 0px;
+  padding: 0px;
+  color: rgba(255,255,255,0.0);
+}
+.leftNavigationArrow, .rightNavigationArrow{
+  position: absolute;
+  font-size: 2em;
+  top: 40px;
+  cursor: pointer;
+}
+.leftNavigationArrow{
+  left: 20px;
+}
+.rightNavigationArrow{
+  right: 20px;
+}

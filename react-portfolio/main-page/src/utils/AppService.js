@@ -14,18 +14,18 @@ var categories = [
     id:"cat01",
     name: "Tools",
     apps:[
-      {name:"App1", id:"app1" , imgName: "cartridgePong.png"},
-      {name:"Tasks Manager", id:"tasksManager", imgName: "cartridgePong.png"},
-      {name:"Weather App", id:"weatherApp", imgName: "cartridgePong.png"}
+      {name:"App1", id:"app1" , imgName: "crazy_pong_art.png"},
+      {name:"Tasks Manager", id:"tasksManager", imgName: "crazy_pong_art.png"},
+      {name:"Weather App", id:"weatherApp", imgName: "crazy_pong_art.png"}
     ]
   },
   {
     id:"cat02",
     name: "Games",
     apps:[
-      {name:"Crazy Pong", id:"crazypong", imgName: "cartridgePong.png"},
-      {name:"Jokenpo", id:"jokenpo", imgName: "cartridgePong.png"},
-      {name:"Moving Words", id:"movingWords", imgName: "cartridgePong.png"}
+      {name:"Crazy Pong", id:"crazypong", imgName: "crazy_pong_art.png"},
+      {name:"Jokenpo", id:"jokenpo", imgName: "crazy_pong_art.png"},
+      {name:"Moving Words", id:"movingWords", imgName: "crazy_pong_art.png"}
     ]
   }
 ];

@@ -1,0 +1,113 @@
+#header{
+  height: 10%;
+  position: relative;
+}
+#react-navbar{
+  padding: 5px 20px;
+  height: 100%;
+  background-color: #417cb9;
+  color: #c8d9dd;
+}
+#react-navbar a{
+  color: #c8d9dd;
+  cursor: pointer;
+}
+#react-navbar-logo{
+  display: inline-block;
+  position: absolute;
+  left: 20px;
+}
+#react-main-logo{
+  font-size: 4em;
+  margin-right: 20px;
+  transition: all 0.5 ease;
+  cursor: pointer;
+}
+#react-main-logo:hover{
+  /* animation: App-logo-spin infinite 20s linear; */
+}
+#home-link{
+  color: #c8d9dd;
+  font-size: 3em;
+  cursor: pointer;
+}
+#home-link:hover{
+  color: #9e9e9e;
+  font-size: 3em;
+  text-decoration: none;
+}
+#react-navbar-navigation{
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  padding-top: 10px;
+  right: 20px;
+}
+#react-navbar-navigation form input, #react-navbar-navigation form button{
+  display: inline-block;
+}
+#categories{
+  padding-top: 10px;
+  margin-right: 20px;
+}
+#categories a{
+  margin: 0px 30px;
+}
+#navbar-toggler{
+  float: right;
+  display: none;
+}
+#react-main-info{
+  display: none;
+}
+
+@media only screen and (max-width: 480px){
+  #react-main-logo{
+    font-size: 3em;
+  }
+  #home-link{
+   font-size: 2em;
+  }
+  #navbar-toggler{
+    display: inline-block;
+    font-size: 2em;
+    margin-top: 10px;
+    margin-right: 5px;
+  }
+  #react-navbar-navigation{
+    display: none;
+    position: absolute;
+    top:60px;
+    width: 100%;
+    left: 0px;
+    background-color: #2a94f6;
+  }
+  #react-navbar-navigation.show-navigation {
+    display: inline-block;
+  }
+  #categories{
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  form{
+    padding: 10px;
+  }
+  .mobile-only{
+    display: initial;
+  }
+  .navbar-collapse{
+    padding: 10px;
+    text-align: right;
+    background-color: #FFFFFF;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+}
+
+@media only screen and (min-width: 769px) {
+
+}

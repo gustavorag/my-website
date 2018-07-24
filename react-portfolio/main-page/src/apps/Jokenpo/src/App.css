@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css?family=Coda+Caption:800|Dancing+Script|Luckiest+Guy|Nova+Cut');
+
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#game{
+  font-size: medium;
+}
+
+#game-components-box{
+  max-width: 1024px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0px auto 80px;
+}
+#result-label{
+  font-size: 3.5em;
+}
+#roll-button{
+  position: relative;
+  font-size: 1.5em;
+  padding: 10px;
+  height: 200px;
+  border: 2px solid #455445;
+  border-radius: 20px;
+  background-color: #56ff2c;
+  cursor: pointer;
+}
+#roll-button img{
+  width: 100px;
+  height: auto;
+}
+#roll-button[disabled]{
+  opacity: 0.5;
+  cursor:not-allowed;
+}
+#roll-button[disabled] img{
+  cursor:not-allowed;
+}
+#options{
+  height: 100px;
+  margin-bottom: 50px;
+}
+#restart-button{
+  display: inline-block;
+  position: relative;
+  top: 15px;
+  cursor: pointer;
+  margin-left: 10px;
+  height: 50px;
+  width: 150px;
+  border: 2px solid #455445;
+  border-radius: 20px;
+  background-color: #56ff2c;
+}
+#restart-button label{
+  position: relative;
+  top:-8px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+#restart-button img{
+  position: relative;
+  top: 5px;
+  height: 40px;
+  width: auto;
+  cursor: pointer;
+}
+.player-score{
+  display: inline-block;
+  padding: 5px;
+  height: 30px;
+  line-height: 30px;
+  margin: 10px 0px
+}
+.score{
+  /* display: inline-block;
+  border: 1px solid #777777;
+  border-radius: 10px;
+  height: 20px;
+  padding: 10px;
+  margin-left: 10px; */
+}
+.result-modal{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(40,40,40,0.5);
+
+}
+.result-modal-content{
+  position: relative;
+  width: 50%;
+  min-height: 50%;
+  margin: 10% auto;
+  padding: 20px 10px 20px;
+  background-color: #FDFDFD;
+  border-radius: 10px;
+}
+.result-modal-content .title{
+  margin: 0px 0px 20px;
+}
+.close-result-modal{
+  position: relative;
+  display: block;
+  width: 100%;
+  right: 10px;
+  height: 30px;
+  font-size: 2em;
+  color: #DD5555;
+  cursor: pointer;
+  text-align: right;
+}
+.close-result-modal:hover{
+  top: -5px;
+  right: 5px;
+  font-size: 2.5em;
+  color: #FF4444;
+}
+.play-again {
+  margin: 40px auto 0px;
+  padding: 10px 5px 0px;
+  width: 160px;
+  height: 100px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+.play-again:hover{
+  color: red;
+  box-shadow: 2px 2px 25px -5px #888888;
+}
+.play-again:active{
+  color: red;
+  box-shadow: 2px 2px 25px -5px #888888 inset;
+}
+.play-again h3{
+  margin: 0px;
+  position: relative;
+  top: 10px;
+}
+.play-again img{
+  width: 80px;
+  height: auto;
+}
+
+.game{
+  position: relative;
+  width: 70%;
+  height: 600px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border: 2px solid #444444;
+  background-color: #f6ffe6;
+  font-size: 1.2em;
+  font-weight: normal;
+  text-align: center;
+  font-family: 'Luckiest Guy', cursive;
+}
+.title-rock{
+  font-family: 'Coda Caption', sans-serif;
+}
+.title-paper{
+  font-family: 'Dancing Script', cursive;
+}
+.title-scissor{
+  font-family: 'Nova Cut', cursive;
+}
+.players{
+  display: flex;
+  max-width: 1024px;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0px auto;
+}
+.img-button{
+  cursor: pointer;
+}
+
+.randomizing{
+  transform: scale(0.8);
+}
+
+.selector{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  font-size: 1.5em;
+}
+
+.option{
+  width: 150px;
+  height: 150px;
+  margin: 0px auto;
+  transition: all 0.5s ease;
+  border-radius: 100px;
+}
+.option img{
+  width: 120px;
+  height: 120px;
+  margin-top: 10px;
+}
+.option.rock{
+  border: 5px solid red;
+  background-color: #c39494;
+}
+.option.paper{
+  border: 5px solid green;
+  background-color: #AAFFAA;
+}
+.option.scissor{
+  border: 5px solid #035a5f;
+  background-color: #5edfe6;
+}
+
+.arrow-up, .arrow-down{
+  width: 80px;
+  height: auto;
+  display: block;
+  margin: 0px auto;
+}
+.arrow-up{
+  transform: rotate(-90deg);
+}
+
+.arrow-down{
+  transform: rotate(90deg);
+}
+
+.confirm-button{
+  width: 60px;
+  height: auto;
+}
+.confirm-button[disabled]{
+  width: 55px;
+  height: auto;
+  opacity: 0.5;
+}
+.disabled{
+  opacity: 0.5;
+  cursor: auto;
+}
+.hidden{
+  display: none;
+}

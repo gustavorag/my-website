@@ -1,0 +1,87 @@
+#virtual-console{
+  display: flex;
+  justify-content: space-around;
+}
+#virtual-console-loader{
+  position: relative;
+  width: 15%;
+  height: 350px;
+  margin: 20px 0px;
+  /* background-image: url('./images/virtual-console/console.png');
+  background-repeat: no-repeat;
+  background-size: 90% 100%; */
+}
+#console-img{
+  position:absolute;
+  width: 100%;
+  height: auto;
+}
+#virtual-console-screen{
+  display: inline-block;
+  width: 75%;
+  margin-top: 20px;
+  min-height: 500px;
+  border: 10px solid #444444;
+
+}
+/* CLASS SELECTORS */
+
+.cartridge-input{
+  position: relative;
+  width: 90%;
+  height: 90%;
+  margin: 0px auto;
+  text-align: center;
+}
+.lnlogo{
+  width: 200px;
+  height: auto;
+  margin: auto;
+}
+.browsing{
+  color: #222222;
+  background-color: #FFFFFF;
+}
+.terminal{
+  background-color: #222222;
+  color: #22AA33;
+}
+.terminal .blink-cursor{
+  background-color: #22AA33;
+}
+@media only screen and (max-width: 480px){
+
+  #virtual-console{
+
+  }
+  #virtual-console-loader{
+    position: relative;
+    width: 65%;
+    height: 400px;
+    margin: 20px auto;
+  }
+  #console-img{
+    position:absolute;
+    width: 100%;
+    height: auto;
+
+  }
+  #virtual-console-screen{
+    display: none;
+    width: 75%;
+    margin-top: 20px;
+    min-height: 500px;
+    border: 10px solid #444444;
+    background-color: #FFFFFF;
+  }
+
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+}
+
+@media only screen and (min-width: 769px) {
+
+}

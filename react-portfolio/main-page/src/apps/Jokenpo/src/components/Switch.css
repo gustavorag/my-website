@@ -1,0 +1,50 @@
+.switch-compoment{
+  display: inline-block;
+}
+.switch-compoment .label {
+  position: relative;
+  top:8px;
+  display: inline-block;
+  margin-right: 5px;
+}
+.switch-selector{
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 30px;
+  background-color: #efefef;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 1px solid #e1e1e1;
+}
+.switch-selector p{
+  margin: 0px;
+}
+.switch-selector-cursor{
+  position: absolute;
+  top:-5px;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #DFDFDF;
+  border: 1px solid #D1D1D1;
+  border-radius: 50%;
+}
+.switch-selector-cursor.off{
+  left: -2px;
+}
+.switch-selector-cursor.on{
+  right: 0px;
+}
+.on-label{
+  color: #55DF55;
+  position: relative;
+  left: -4px;
+  top: 8px;
+}
+.off-label{
+  color: #DF5555;
+  position: relative;
+  right: -4px;
+  top: 8px;
+}

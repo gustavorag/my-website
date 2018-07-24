@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 //Loading assets
 import consoleImg from '../images/virtual-console/console.png'
+import lnCorpLogo from '../images/virtual-console/lnCorpLogo.png'
 
 //Internal Components
 import MyAppService from '../utils/AppService';
 import CartridgeShelf from './CartridgeShelf';
 import AppCartridge from './AppCartridge';
+import TypingSimulation from './TypingSimulation.js'
 
 //Utilitaries
 // import Utils from '../utils/Utils';
@@ -15,23 +17,30 @@ import MouseTrack from '../modules/MouseTrack';
 import DropListener from '../modules/DropListener';
 import Draggable from '../modules/Draggable';
 
+//Styles
+import '../styles/VirtualConsole.css';
+
+var consoleInputText = [
+  "LN CORP - 2018",
+  "INITIALIZING VIRTUAL CONSOLE /*/*--*# - ()OK",
+  "LOADING ASSETS *******",
+  "---- Instructions: Drag and Drop Cartridges on the Console to load the APP ----",
+  "WAITING FOR CARTRIDGE SELECTION ..."
+]
+
 class AppLoader extends Component{
-
-
 
   constructor(props){
     super(props);
 
-    var category = undefined;
-    if(this.props.categoryId){
-      category = MyAppService.getCategoryById(this.props.categoryId);
-    }
+
 
     this.state = {
-      category: category,
-      apps: category.apps.slice(),
+      apps: [],
       loadedApp: undefined,
       trackOn: true,
+      appInfo: null,
+
     }
 
     this.CARTRIDGE_SHELF_ID = "cartridgeSheld";
@@ -51,7 +60,8 @@ class AppLoader extends Component{
     ]
 
     this.handleDropMatched = this.handleDropMatched.bind(this);
-
+    this.handlerMouseOverCartridge = this.handlerMouseOverCartridge.bind(this);
+    this.handleTypeEnding = this.handleTypeEnding.bind(this);
   }
 
   /*
@@ -132,27 +142,66 @@ class AppLoader extends Component{
     })
 
     newState.apps = apps;
+    newState.appInfo = null;
     this.setState(newState)
 
   }
 
+  handlerMouseOverCartridge(app, isOver){
+    if(isOver){
+      this.setState({appInfo: {name: app.name, desc: app.desc}})
+    }else{
+      this.setState({appInfo: null})
+    }
+  }
+
+  handleTypeEnding(){
+    if(this.state.apps.length < 1){
+      this.setState({apps: MyAppService.getApps().slice()})
+    }
+
+  }
+
+
   render(){
 
-    var appContent = null;
+    //Content to be displayed in the Virtual Console Screen
+    var consoleContent = null;
+    var isAppLoaded = false;
+
     if(this.state.loadedApp){
+      isAppLoaded = true;
       var ReactApp = MyAppService.getReactAppById(this.state.loadedApp.id);
-      appContent = (<ReactApp />)
+      consoleContent = (<ReactApp />)
+
     }else{
-      appContent = (
-        <h2>No Apps</h2>
+
+      var appInfoConten = this.state.appInfo ?
+      (
+        <div>
+          <p>-------------------------------------------------------------</p>
+          <p>App Name: {this.state.appInfo.name}</p>
+          <p>App Desc: {this.state.appInfo.desc}</p>
+        </div>
       )
+      :
+      null;
+      consoleContent = (
+        <div className="type-simulation">
+          <TypingSimulation input={consoleInputText} onTypingEnd={this.handleTypeEnding} fast={true} noSimulation={false}/>
+          {appInfoConten}
+        </div>
+      )
+
     }
+
+    var virtualConsoleScreenClass = isAppLoaded ? "browsing" : "terminal"
 
     return(
       <MouseTrack isTrackOn={this.state.trackOn} dropMatchListeners={this.dropeMatchListener}>
         <div>
-          <CartridgeShelf mouseTrackerId={this.CARTRIDGE_SHELF_ID}
-            apps={this.state.category ? this.state.apps : undefined} />
+          <CartridgeShelf mouseTrackerId={this.CARTRIDGE_SHELF_ID} onMouseOverCartridge={this.handlerMouseOverCartridge}
+            apps={this.state.apps ? this.state.apps : undefined} />
           <div id="virtual-console">
             <div id="virtual-console-loader">
               <img src={consoleImg} id="console-img"/>
@@ -172,8 +221,8 @@ class AppLoader extends Component{
               </DropListener>
 
             </div>
-            <div id="virtual-console-screen">
-              {appContent}
+            <div id="virtual-console-screen" className={virtualConsoleScreenClass}>
+              {consoleContent}
             </div>
           </div>
         </div>

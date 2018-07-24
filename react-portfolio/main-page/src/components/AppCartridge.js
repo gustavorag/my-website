@@ -9,10 +9,25 @@ class AppCartridge extends Component{
 
     return( this.props.app ?
       (
-        <div className={cartridgeClassName}>
-            <img draggable={false} src={cartridgeTop} className="cartridge-top" alt="Cartridge top"></img>
-            <img draggable={false} src={require("../images/virtual-console/"+this.props.app.imgName)} alt={this.props.app.imgName} className="cartridge-art"></img>
-            <img draggable={false} src={cartridgeBottom} className="cartridge-bottom" alt="Cartridge bottom"></img>
+        <div className={cartridgeClassName}
+          onMouseOver={
+            ()=>{
+              if(this.props.onMouseOverHandler && !this.props.app.isLoaded){
+                this.props.onMouseOverHandler(this.props.app, true);
+              }
+            }
+          }
+          onMouseOut={
+            ()=>{
+              if(this.props.onMouseOverHandler){
+                this.props.onMouseOverHandler(this.props.app, false);
+              }
+            }
+          }
+          >
+          <img draggable={false} src={cartridgeTop} className="cartridge-top" alt="Cartridge top"></img>
+          <img draggable={false} src={require("../images/virtual-console/"+this.props.app.imgName)} alt={this.props.app.imgName} className="cartridge-art"></img>
+          <img draggable={false} src={cartridgeBottom} className="cartridge-bottom" alt="Cartridge bottom"></img>
         </div>
       )
       :

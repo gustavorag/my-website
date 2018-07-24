@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=VT323');
+
 html,
 body {
   margin: 0px;
@@ -27,32 +29,6 @@ body {
 #content{
   height: 90%;
   background-color: #233d54;
-}
-#virtual-console{
-  display: flex;
-  justify-content: space-around;
-}
-#virtual-console-loader{
-  position: relative;
-  width: 15%;
-  height: 350px;
-  margin: 20px 0px;
-  /* background-image: url('./images/virtual-console/console.png');
-  background-repeat: no-repeat;
-  background-size: 90% 100%; */
-}
-#console-img{
-  position:absolute;
-  width: 100%;
-  height: auto;
-}
-#virtual-console-screen{
-  display: inline-block;
-  width: 75%;
-  margin-top: 20px;
-  min-height: 500px;
-  border: 10px solid #444444;
-  background-color: #FFFFFF;
 }
 /* CLASS SELECTORS */
 .mobile-only{
@@ -111,15 +87,33 @@ body {
 .cartridge-grabbing .app-cartridge.loaded .cartridge-bottom{
   display: initial;
 }
-.cartridge-input{
-  position: relative;
-  width: 90%;
-  height: 90%;
-  margin: 0px auto;
-  text-align: center;
-}
 .show-content {
   display: initial;
+}
+.blink-cursor{
+  display: inline-block;
+  position:relative;
+  width: 20px;
+  height: 30px;
+  top:5px;
+  background-color: rgba(20,50,20,1);
+  animation:fade 1200ms infinite;
+  -webkit-animation:fade 1200ms infinite;
+}
+.type-simulation{
+  font-family: 'VT323', monospace;
+  font-size: 2em;
+}
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    to { opacity: 1.0; }
+}
+
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    to { opacity: 1.0; }
 }
 
 @media only screen and (max-width: 480px){
@@ -140,9 +134,7 @@ body {
     height: 90%;
     background-color: #233d54;
   }
-  #virtual-console{
 
-  }
   #react-cartridge-shelf ul{
     display: inline-block;
     width: 90%;
@@ -150,26 +142,6 @@ body {
   #react-cartridge-shelf ul li{
     display: inline-block;
     float: left;
-  }
-  #virtual-console-loader{
-    position: relative;
-    width: 65%;
-    height: 400px;
-    margin: 20px auto;
-  }
-  #console-img{
-    position:absolute;
-    width: 100%;
-    height: auto;
-
-  }
-  #virtual-console-screen{
-    display: none;
-    width: 75%;
-    margin-top: 20px;
-    min-height: 500px;
-    border: 10px solid #444444;
-    background-color: #FFFFFF;
   }
 
   .mobile-only{

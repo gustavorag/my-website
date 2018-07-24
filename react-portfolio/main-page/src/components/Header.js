@@ -9,11 +9,8 @@ class Header extends Component{
   constructor(props){
     super(props);
 
-    var categories = AppService.getCategories();
-
     this.state={
       selectedApps:undefined,
-      categories: categories,
       showCollapsedNav: false,
     }
 
@@ -25,13 +22,6 @@ class Header extends Component{
 
     var selectedApps = undefined;
 
-    for(let index=0; index < this.state.categories.length; index++){
-      if(this.state.categories[index].id === categoryId){
-        selectedApps = this.state.categories[index].apps;
-        break;
-      }
-    }
-    console.log("selectedApps - "+JSON.stringify(selectedApps))
     this.setState({selectedApps:selectedApps});
   }
 
@@ -55,21 +45,37 @@ class Header extends Component{
             </a>
           </div>
           <div id="react-navbar-navigation" className={showNavigation}>
-            <div id="categories">
-              {
-                this.state.categories.map(
-                  (category) => (
-                    <Link key={category.name} to={"/apploader/"+category.id} onClick={
-                        ()=>{
-                          this.toggleNavBar(false)
-                        }
-                      }>
-                      {category.name}
-                    </Link>
-                  )
-                )
-              }
-            </div>
+            <ul id="links">
+              <li>
+                <Link to={"/home/"} onClick={
+                    ()=>{
+                      this.toggleNavBar(false)
+                    }
+                  }>
+                  <i class="fas fa-home"></i><p>Home</p>
+                </Link>
+              </li>
+
+              <li>
+                <Link to={"/apploader/"} onClick={
+                    ()=>{
+                      this.toggleNavBar(false)
+                    }
+                  }>
+                  <i class="fas fa-terminal"></i><p>Virtual Console</p>
+                </Link>
+              </li>
+
+              <li>
+                <Link to={"/about/"} onClick={
+                    ()=>{
+                      this.toggleNavBar(false)
+                    }
+                  }>
+                  <i class="fas fa-address-card"></i><p>About</p>
+                </Link>
+              </li>
+            </ul>
             <form className="form-inline mt-2 mt-md-0">
               <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
               <button className="btn my-2 my-sm-0" type="submit">Search</button>

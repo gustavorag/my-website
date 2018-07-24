@@ -180,10 +180,13 @@ class CartridgeShelf extends Component {
     :
     null
 
+    // var shelfClass = Utils.isArrayEmpty(this.props.apps) ? " collapsed" : "";
+    var shelfClass = "";
+
     return this.props.mouseTrack ?
     (
       <div id={this.SHELF_DIV_ID} style={this.state.shelfStyle}
-        className={Utils.isArrayEmpty(this.props.apps) ? " collapsed" : ""}>
+        className={shelfClass}>
         {leftNavigationArrow}
         {
           Utils.isArrayEmpty(this.props.apps) ? null : (
@@ -199,7 +202,7 @@ class CartridgeShelf extends Component {
                             mouseTrack={this.props.mouseTrack}
                             draggableItem={item}
                             >
-                            <AppCartridge app={item} mouse={this.props.mouse}/>
+                            <AppCartridge app={item} mouse={this.props.mouse} onMouseOverHandler={this.props.onMouseOverCartridge}/>
                           </Draggable>
                         </li>
                       )

@@ -357,7 +357,7 @@ class MouseTrack extends Component {
     }
 
     render(){
-
+      console.log("Rendenring MouseTrack")
       var renderedChildren = this.checkChildrenForTracking(this)
       return(
         <div style={{height: "100%"}}

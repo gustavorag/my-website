@@ -25,7 +25,8 @@ var consoleInputText = [
   "INITIALIZING VIRTUAL CONSOLE /*/*--*# - ()OK",
   "LOADING ASSETS *******",
   "---- Instructions: Drag and Drop Cartridges on the Console to load the APP ----",
-  "WAITING FOR CARTRIDGE SELECTION ..."
+  "------- ATTENTION! Working in progress. ---------",
+  "WAITING FOR CARTRIDGE SELECTION ...",
 ]
 
 class AppLoader extends Component{
@@ -199,33 +200,33 @@ class AppLoader extends Component{
 
     return(
       <MouseTrack isTrackOn={this.state.trackOn} dropMatchListeners={this.dropeMatchListener}>
-        <div>
-          <CartridgeShelf mouseTrackerId={this.CARTRIDGE_SHELF_ID} onMouseOverCartridge={this.handlerMouseOverCartridge}
-            apps={this.state.apps ? this.state.apps : undefined} />
-          <div id="virtual-console">
-            <div id="virtual-console-loader">
-              <img src={consoleImg} id="console-img"/>
-              <DropListener mouseTrackerId={this.CARTRIDGE_INPUT_ID}
-                dragDropListenerClass="cartridge-input">
-                {
-                  this.state.loadedApp ?
-                  (
-                    <Draggable mouseTrackerId={"loaded-"+this.state.loadedApp.name} draggableItem={this.state.loadedApp}
-                      cursorClass={{grab: "cartridge-grab",grabbing: "cartridge-grabbing"}}>
-                      <AppCartridge app={this.state.loadedApp}/>
-                    </Draggable>
-                  )
-                  :
-                  (null)
-                }
-              </DropListener>
 
-            </div>
-            <div id="virtual-console-screen" className={virtualConsoleScreenClass}>
-              {consoleContent}
-            </div>
+        <CartridgeShelf mouseTrackerId={this.CARTRIDGE_SHELF_ID} onMouseOverCartridge={this.handlerMouseOverCartridge}
+          apps={this.state.apps ? this.state.apps : undefined} />
+        <div id="virtual-console">
+          <div id="virtual-console-loader">
+            <img src={consoleImg} id="console-img"/>
+            <DropListener mouseTrackerId={this.CARTRIDGE_INPUT_ID}
+              dragDropListenerClass="cartridge-input">
+              {
+                this.state.loadedApp ?
+                (
+                  <Draggable mouseTrackerId={"loaded-"+this.state.loadedApp.name} draggableItem={this.state.loadedApp}
+                    cursorClass={{grab: "cartridge-grab",grabbing: "cartridge-grabbing"}}>
+                    <AppCartridge app={this.state.loadedApp}/>
+                  </Draggable>
+                )
+                :
+                (null)
+              }
+            </DropListener>
+
+          </div>
+          <div id="virtual-console-screen" className={virtualConsoleScreenClass}>
+            {consoleContent}
           </div>
         </div>
+
       </MouseTrack>
 
     )

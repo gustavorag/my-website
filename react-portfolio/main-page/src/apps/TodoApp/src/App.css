@@ -1,0 +1,159 @@
+/*
+Author - Gustavo Rocha de Almeida Guimaraes
+BCIT Number:  A01041004
+ */
+.TodoApp{
+  position: relative;
+  min-height: 700px;
+}
+.TodoApp-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+.TodoApp-header h2{
+  width: 100%;
+  display: inline-block;
+  font-size: 4em;
+  text-align: center;
+}
+.TodoApp-intro {
+  font-size: large;
+}
+.TodoApp-content{
+  padding: 20px 50px;
+  width: 75%;
+  margin: 0px auto;
+  text-align: center;
+  position: relative;
+}
+.Input-box{
+  width: 300px;
+  height: 400px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px #555555;
+  position: absolute;
+  top: 10px;
+  left: 200px;
+  display: inline-block;
+}
+.Input-box label{
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.Input-box input[type="text"]{
+  padding: 10px;
+  width: 268px;
+  display: block;
+  margin: 10px auto;
+  font-size: 1.4em;
+}
+.Input-box input[type="button"]{
+  border: none;
+  box-shadow: 0px 0px 5px 0px #555555;
+  cursor:pointer;
+}
+.Input-box input[type="button"]:hover{
+  border: 1px solid #777777;
+  box-shadow: 0px 0px 6px 0px #555555;
+}
+.Input-box input[type="button"]:active{
+  box-shadow: none;
+  font-size: 1em;
+}
+.Input-box input.ok, .Input-box input.clean{
+  font-size: 1.2em;
+  padding: 10px;
+  border-radius: 7px;
+  position: absolute;
+  bottom: 15px;
+}
+.Input-box input.ok{
+  background-color: #c2f7d6;
+  color: #2c5727;
+  right: 20px;
+}
+.Input-box input.clean{
+  background-color: #9bc4f5;
+  color: #0f174f;
+  left: 20px;
+}
+.Input-box textarea{
+  width: 278px;
+  height: 220px;
+  padding: 5px;
+  display: block;
+  margin: 10px auto;
+  resize: none;
+}
+.Todo-list{
+  width: 400px;
+  min-height: 500px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px #555555;
+  margin: 0px 50px;
+  margin-bottom: 50px;
+  position: absolute;
+  top: 10px;
+  left: 500px;
+  display: inline-block;
+  overflow-y: auto;
+
+}
+.Todo-list ul{
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+.Todo-list li{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.Todo-list li input{
+  display: inline-block;
+  width:30px;
+}
+.Task-content{
+  width:320px;
+  height: auto;
+  padding: 10px;
+  display: inline-block;
+  background-color: #eaed5b;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px 0px #555555;
+  color: #444444;
+  position: relative;
+  transition: height 0.8s ease;
+}
+.Task-content span{
+  position: absolute;
+  right: 8px;
+  top: 5px;
+  transition: all 0.5s ease;
+  cursor:pointer;
+}
+.Turn-arrow-down{
+  transform: rotate(90deg);
+}
+.Error-msg{
+  padding: 5px 10px 5px 5px;
+  border: 1px solid #522727;
+  margin: 2px;
+  background-color: #ee7a9d;
+  color: #FFFFFF;
+  position:relative;
+}
+.Error-msg span{
+  position:absolute;
+  top:2px;
+  right:5px;
+  cursor: pointer;
+}
+.hidden{
+  display: none;
+}

@@ -5,12 +5,21 @@ import AppLoader from './AppLoader';
 import About from './About';
 import NotFound from './NotFound';
 
+// const Routes = () =>(
+//   <div id="content">
+//     <Switch>
+//       <Route exact path="/" component={Home} />
+//       <Route path="/apploader/" component={AppLoader} />
+//       <Route path="/about" component={About} />
+//       <Route exact component={NotFound} /> {/*If there is no path, any path that do not exist will show this component*/}
+//       </Switch>
+//     </div>
+//   );
+
 const Routes = () =>(
   <div id="content">
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/apploader/" component={AppLoader} />
-      <Route path="/about" component={About} />
+      <Route path="/" component={AppLoader} />
       <Route exact component={NotFound} /> {/*If there is no path, any path that do not exist will show this component*/}
       </Switch>
     </div>
